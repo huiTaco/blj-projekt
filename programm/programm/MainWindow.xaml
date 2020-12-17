@@ -1,0 +1,153 @@
+﻿<Window x:Class="programm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:programm"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="440.97" Width="696.502">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <Button x:Name="btnHome" Background="white" BorderThickness="0" Click="btnHome_Click">
+                <Image Width="60" Source="images/home1.jpg" />
+            </Button>
+            <TextBlock Text="Home" TextAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <Button x:Name="bntHusi" Background="white" BorderThickness="0" Click="Button_Click">
+                <Image Width="60" Source="images/homework.jpg" />
+            </Button>
+            <TextBlock Text="Husiplaner" TextAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2">
+            <Button x:Name="btnTodo" Background="white" BorderThickness="0" Click="Button_Click_1">
+                <Image Width="60" Source="images/to do list.jpg" />
+            </Button>
+            <TextBlock Text="to do List" TextAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3">
+            <Button x:Name="btnAusgabe" Background="white" BorderThickness="0" Click="Button_Click_2">
+                <Image Width="60" Source="images/cheklist.jpg" />
+            </Button>
+            <TextBlock Text="Ausgabe" TextAlignment="Center"/>
+        </StackPanel>
+
+        <TabControl x:Name="tabCtrl" Grid.Column="1" Grid.RowSpan="4" Margin="1,-22,-1,-1" Background="Lightgray" Width="Auto">
+            <TabItem Header="HomeTab" Visibility="hidden">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.ColumnSpan="2"  Text="never forget" FontSize="40">
+                    </TextBlock>
+                    
+ 
+                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+                        <TextBlock Text="Willkommen auf meiner App.">
+                        </TextBlock>
+                        <TextBlock Text="Auf der Linken Seite kannst du Zwischen " Margin="0, 5, 0 , 0">
+                        </TextBlock>
+                        <TextBlock Text="den verschiedenen Auswahlmöglichkeiten navigieren." Margin="0, 0, 0 , 0">
+                        </TextBlock>
+                        <TextBlock Text="Ich wünsche dir viel Spass dabei :) " Margin="0, 5, 0 , 0">
+                        </TextBlock>
+                    </StackPanel>
+
+                    <!--/<TextBlock Grid.Column="1" Grid.Row="1" Text="2. Spalte, 2. Zeile">
+                    </TextBlock>/-->
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="HusiTab" Visibility="hidden">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.ColumnSpan="2" Text="Willkommen beim Husiplaner" FontSize="39.12756">
+                    </TextBlock>
+                    <TextBlock Grid.Row ="1" Grid.ColumnSpan="2" Text="Trage in die untenstehenden Felder deine Husi ein" Margin="5, 15, 0, 10">
+                    </TextBlock>
+                    <TextBlock Grid.Row="2" Text="Fach"  Margin="5, 0, 0, 0">
+                    </TextBlock>
+                    <TextBox Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Height="25" x:Name="txtBox_fach" Margin="0, 0, 0, 5">
+                    </TextBox>
+                    <TextBlock Grid.Row="3" Text="Deine Husi"  Margin="5, 0, 0, 0">
+                    </TextBlock>
+                    <TextBox Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Height="25" x:Name="txtBox_deinehusi" Margin="0, 0, 0, 5">
+                    </TextBox>
+                    <TextBlock Grid.Row="4" Text ="Erledigen bis"  Margin="5, 0, 0, 0">
+                    </TextBlock>
+                    <DatePicker Grid.Row="4" Grid.Column="1" x:Name="datepicker"  DisplayDateStart="{Binding MinAvailDate}" DisplayDateEnd="{Binding MaxAvailDate}">
+                    </DatePicker>
+                    <Button Grid.Row="5" Grid.Column="1" x:Name="btnFinish" HorizontalAlignment="Left"  Height="100" Margin="0,10,0,0" Click="btnFinish_Click">
+                        <Image Source="images/finish.jpg" />
+                    </Button>
+                    <Label  Grid.Row="5" Grid.Column="1"  x:Name="Lable1" Height="150" Margin="150,10,0,0" ></Label>
+                </Grid>
+            </TabItem>
+            <TabItem Header="TodoTab" Visibility="hidden">
+            </TabItem>
+            <TabItem Header="Ausgabe" Visibility="hidden">
+                <Grid>
+                    <DataGrid Height="Auto" Width="Auto">
+                        <TextBlock x:Name="textausgabe" HorizontalAlignment="Left" Margin="20,28,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+                        <!--Desing vom Header-->
+                        <DataGrid.Resources>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="LightGray"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="BorderThickness" Value="0,0,1,2"/>
+                                <Setter Property="BorderBrush" Value="Black"/>
+                            </Style>
+                        </DataGrid.Resources>
+                                                    
+                        <!-- Colum Header Text & Bidings-->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header=" Fach" Width="2*"/>
+                            <DataGridTextColumn Header=" Husi" Width="4*"/>
+                            <DataGridTextColumn Header=" Datum" Width="2*"/>
+                            <DataGridTextColumn Header=" Erledigt?" Width="*"/>
+
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+           
+        </TabControl>
+
+
+    </Grid>
+</Window>
