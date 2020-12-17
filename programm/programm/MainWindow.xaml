@@ -139,15 +139,11 @@
                             <DataGridTextColumn Header=" Husi" Width="4*"/>
                             <DataGridTextColumn Header=" Datum" Width="2*"/>
                             <DataGridTextColumn Header=" Erledigt?" Width="*"/>
-
                         </DataGrid.Columns>
-                        
                     </DataGrid>
                 </Grid>
             </TabItem>
            
         </TabControl>
-
-
     </Grid>
 </Window>
