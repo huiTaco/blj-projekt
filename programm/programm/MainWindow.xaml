@@ -109,7 +109,8 @@
                     </TextBox>
                     <TextBlock Grid.Row="4" Text ="Erledigen bis"  Margin="5, 0, 0, 0">
                     </TextBlock>
-                    <DatePicker Grid.Row="4" Grid.Column="1" x:Name="datepicker"  DisplayDateStart="{Binding MinAvailDate}" DisplayDateEnd="{Binding MaxAvailDate}">
+                    <DatePicker Grid.Row="4" Grid.Column="1" x:Name="datepicker" >
+                        <!--DisplayDateStart="{Binding MinAvailDate}" DisplayDateEnd="{Binding MaxAvailDate}">-->
                     </DatePicker>
                     <Button Grid.Row="5" Grid.Column="1" x:Name="btnFinish" HorizontalAlignment="Left"  Height="100" Margin="0,10,0,0" Click="btnFinish_Click">
                         <Image Source="images/finish.jpg" />

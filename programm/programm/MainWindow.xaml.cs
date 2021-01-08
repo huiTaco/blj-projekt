@@ -61,7 +61,7 @@ namespace programm
             MessageBox.Show("Die Eingabe wurde in die Datenbank geldaden.");
             string fach = txtBox_fach.Text;
             string deinehusi = txtBox_deinehusi.Text;
-            DateTime date = datepicker.DisplayDate;
+            DateTime date = Convert.ToDateTime(datepicker.Text);
             Boolean erledigt = false;
 
             Lable1.Content = fach + "\n" + deinehusi + "\n" + date;
