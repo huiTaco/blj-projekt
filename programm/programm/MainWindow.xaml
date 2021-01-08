@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:programm"
         mc:Ignorable="d"
-        Title="MainWindow" Height="440.97" Width="696.502">
+        Title="MainWindow" Height="440.97" Width="777.502">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
@@ -14,8 +14,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+            <!--<RowDefinition Height="1*" /> -->
+                <RowDefinition Height="1*" />
             
         </Grid.RowDefinitions>
 
@@ -33,12 +33,12 @@
             <TextBlock Text="Husiplaner" TextAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="2">
+       <!-- <StackPanel Grid.Row="2">
             <Button x:Name="btnTodo" Background="white" BorderThickness="0" Click="Button_Click_1">
                 <Image Width="60" Source="images/to do list.jpg" />
             </Button>
             <TextBlock Text="to do List" TextAlignment="Center"/>
-        </StackPanel>
+        </StackPanel> -->
 
         <StackPanel Grid.Row="3">
             <Button x:Name="btnAusgabe" Background="white" BorderThickness="0" Click="Button_Click_2">
@@ -120,27 +120,48 @@
             <TabItem Header="TodoTab" Visibility="hidden">
             </TabItem>
             <TabItem Header="Ausgabe" Visibility="hidden">
+                
+                
                 <Grid>
-                    <DataGrid Height="Auto" Width="Auto">
-                        <TextBlock x:Name="textausgabe" HorizontalAlignment="Left" Margin="20,28,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
-                        <!--Desing vom Header-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="3*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock>
+                    <Run FontSize="30" Text="Deine Husi"/><LineBreak/><Run Text="Dies ist die Liste von den Hausaufgaben die du noch machen muss."/><LineBreak/><Run Text="Falls du die Aufgabe erledigt hat kreuze sie an und sie verschwindet wieder. :)"/>
+                    </TextBlock>
+                    <DataGrid x:Name="dataGrid" CanUserAddRows="False" Height="Auto" Width="Auto" Grid.Row="1" ItemsSource="{Binding Path=Husis}" GridLinesVisibility="All" AutoGenerateColumns="False" SelectedValuePath="Name" VerticalAlignment="Top" RowHeight="50" ColumnWidth="100" CurrentCellChanged="dataGrid_CurrentCellChanged" >
+                      <!--Desing vom Header-->
                         <DataGrid.Resources>
-                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Style TargetType="DataGridCell">
+                                <!--<Setter Property="Margin" Value="0,10,0,0"/> -->
+                            </Style>
+                            <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="Background" Value="LightGray"/>
                                 <Setter Property="FontWeight" Value="SemiBold"/>
                                 <Setter Property="BorderThickness" Value="0,0,1,2"/>
                                 <Setter Property="BorderBrush" Value="Black"/>
+                                
                             </Style>
                         </DataGrid.Resources>
                                                     
                         <!-- Colum Header Text & Bidings-->
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header=" Fach" Width="2*"/>
-                            <DataGridTextColumn Header=" Husi" Width="4*"/>
-                            <DataGridTextColumn Header=" Datum" Width="2*"/>
-                            <DataGridTextColumn Header=" Erledigt?" Width="*"/>
+                            <DataGridTextColumn Header=" Id" Binding="{Binding Id}" Visibility="Hidden" Foreground="{x:Null}"/>
+                            <DataGridTextColumn Header=" Fach" Width="2*" Binding="{Binding Fach}"/>
+                            <DataGridTextColumn Header=" Husi" Width="4*" Binding="{Binding Husi}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header=" Datum" Width="2*" Binding="{Binding Datum}"/>
+                            <DataGridCheckBoxColumn x:Name="dataCheckedColumn"  Header=" Erledigt?" Width="*" Binding="{Binding Erledigt}"/>
                         </DataGrid.Columns>
+                        
                     </DataGrid>
+                        
                 </Grid>
             </TabItem>
            

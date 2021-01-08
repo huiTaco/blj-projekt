@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using System.Collections.ObjectModel;
 
 
 namespace programm
@@ -23,30 +24,17 @@ namespace programm
     /// </summary>
     public partial class MainWindow : Window
     {
-        DbConnector connector = new DbConnector();
+        MainWindowViewModel vm = new MainWindowViewModel();    
 
-        private void LoadData()
-        {
-
-            DataTable data = connector.GetDataFromDb("select * from tbHusiplaner");
-
-        }
         public MainWindow()
         {
             InitializeComponent();
-            LoadData();
-           // textausgabe.Text = "Dies ist die Liste von den Hausaufgaben die du noch machen muss.\nFalls du die Aufgabe erledigt hat kreuze si an und sie verschwindet wieder ";
+            DataContext = vm;
+
+            //textausgabe.Text = "Dies ist die Liste von den Hausaufgaben die du noch machen muss.\nFalls du die Aufgabe erledigt hat kreuze si an und sie verschwindet wieder ";
+            //textausgabeTitel.Text = "Ausstehende Husi\n";
         }   
-        public class Husiplaner
-        {
-            public string Fach { get; set; }
-            public string Husi { get; set; }
-            public string Datum { get; set; }
-            public string Erledigt { get; set; }
-
-
-        }
-            
+                  
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
@@ -70,18 +58,30 @@ namespace programm
 
         private void btnFinish_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Finish wurde gedrückt.");
+            MessageBox.Show("Die Eingabe wurde in die Datenbank geldaden.");
             string fach = txtBox_fach.Text;
             string deinehusi = txtBox_deinehusi.Text;
             DateTime date = datepicker.DisplayDate;
+            Boolean erledigt = false;
 
             Lable1.Content = fach + "\n" + deinehusi + "\n" + date;
 
-            connector.InsertHusi(fach, deinehusi, date);
-          
+            vm.AddHusi(fach, deinehusi, date, erledigt);
+
             txtBox_fach.Clear();
             txtBox_deinehusi.Clear();
             datepicker.SelectedDate = null;
+            vm.Refresh();
         }
+
+        private void dataGrid_CurrentCellChanged(object sender, EventArgs e)
+        {
+           if (dataGrid.CurrentCell.Column.DisplayIndex == 4)
+           { 
+                Husiplaner changed = (Husiplaner)dataGrid.CurrentCell.Item;
+                vm.DeleteHusi(changed);
+           }
+        }
+       
     }
 }

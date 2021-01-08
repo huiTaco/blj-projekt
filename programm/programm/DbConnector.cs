@@ -43,7 +43,16 @@ namespace programm
             return table;
         }
 
-        public void InsertHusi(string fach, string deinehusi, DateTime erledigtBis)
+        public void DeleteHusi(int id)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = dbConnection;
+            cmd.CommandText = "delete from tbHusiplaner where id=" + id.ToString();
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void InsertHusi(string fach, string deinehusi, DateTime? erledigtBis ,Boolean erledigt)
         {
             ValidateConnection();
 
@@ -51,11 +60,12 @@ namespace programm
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = dbConnection;
-                cmd.CommandText = "insert tbHusiplaner(Fach, DeineHusi, ErledigtBis) values (@fach, @deinehusi, @datum)";
+                cmd.CommandText = "insert tbHusiplaner(Fach, DeineHusi, ErledigtBis, Erledigt) values (@fach, @deinehusi, @datum, @Erledigt)";
 
                 cmd.Parameters.AddWithValue("@fach", fach);
                 cmd.Parameters.AddWithValue("@deinehusi", deinehusi);
                 cmd.Parameters.AddWithValue("@datum", erledigtBis);
+                cmd.Parameters.AddWithValue("@Erledigt", erledigt);
                 
                 cmd.ExecuteNonQuery();
             }

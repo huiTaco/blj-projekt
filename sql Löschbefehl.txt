@@ -1,0 +1,3 @@
+SELECT count(*)
+DELETE FROM tbHusiplaner
+WHERE ID = '11';
